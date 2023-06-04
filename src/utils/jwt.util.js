@@ -1,14 +1,16 @@
 import jwt from 'jsonwebtoken';
 
+const SECRET_KEY = process.env.SECRET_KEY;
+
 const generateToken = (payload, expiresIn = '2w') => {
-  const token = jwt.sign(payload, 'your-secret-key', { expiresIn });
+  const token = jwt.sign(payload, SECRET_KEY, { expiresIn });
   return token;
 };
 
 const verifyToken = (token) => {
   try {
     const formattedToken = formatToken(token);
-    const decoded = jwt.verify(formattedToken, 'your-secret-key');
+    const decoded = jwt.verify(formattedToken, SECRET_KEY);
     return decoded;
   } catch (err) {
     throw err;
