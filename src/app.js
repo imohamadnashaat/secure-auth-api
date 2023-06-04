@@ -1,8 +1,10 @@
 import express from 'express';
-import jwt from 'jsonwebtoken';
-import { Pool } from 'pg';
+
+import api from './routes/api.js';
 
 const app = express();
 app.use(express.json());
+
+app.use('/api', api);
 
 export default app;
