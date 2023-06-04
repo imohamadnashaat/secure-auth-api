@@ -15,7 +15,10 @@ const verifyTokenMiddleware = (req, res, next) => {
     // Store the decoded token in the request object for later use
     req.user = decoded;
     next();
-  } catch (error) {
+  } catch (err) {
+    if (err.message === 'jwt expired') {
+      return res.status(401).json({ message: 'Token has expired' });
+    }
     return res.status(401).json({ message: 'Invalid token' });
   }
 };

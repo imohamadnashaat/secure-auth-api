@@ -10,7 +10,7 @@ const register = async (req, res) => {
 
     if (userExists) {
       return res.status(400).json({
-        message: 'Unable to register with this email. User already exists.',
+        message: 'Unable to register with this email.',
       });
     }
 
@@ -45,7 +45,6 @@ const login = async (req, res) => {
     const token = generateToken({ email });
     res.json({ token });
   } catch (err) {
-    console.error(err);
     res.status(500).json({ message: 'Internal server error' });
   }
 };
