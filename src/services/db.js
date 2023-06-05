@@ -19,4 +19,4 @@ const query = async (text, params) => {
   }
 };
 
-export default { query };
+export default { pool, query };
