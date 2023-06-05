@@ -1,13 +1,15 @@
 import pkg from 'pg';
 
+const dbConfig = {
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_DATABASE,
+};
+
 const { Pool } = pkg;
-const pool = new Pool({
-  user: 'mohamad',
-  password: '',
-  host: 'localhost',
-  port: 5432,
-  database: 'users-auth',
-});
+const pool = new Pool(dbConfig);
 
 const query = async (text, params) => {
   const client = await pool.connect();
