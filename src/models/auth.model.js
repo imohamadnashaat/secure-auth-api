@@ -7,6 +7,18 @@ const createLoginByEmail = async (email, password) => {
   return login.rows[0];
 };
 
+const updateLoginByEmail = async (email, newEmail) => {
+  const query = 'UPDATE login SET email = $1 WHERE email = $2 RETURNING *';
+  const result = await db.query(query, [newEmail, email]);
+  return result.rows[0];
+};
+
+const DeleteLoginByEmail = async (email) => {
+  const query = 'DELETE FROM login WHERE email = $1';
+  const result = await db.query(query, [email]);
+  return result.rows[0];
+};
+
 const loginByEmail = async (email) => {
   const query = 'SELECT * FROM login WHERE email = $1';
   const result = await db.query(query, [email]);
@@ -23,6 +35,8 @@ const resetPasswordByEmail = async (email) => {
 
 export {
   createLoginByEmail,
+  updateLoginByEmail,
+  DeleteLoginByEmail,
   loginByEmail,
   logoutByEmail,
   resetPasswordByEmail,

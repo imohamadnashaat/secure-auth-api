@@ -1,5 +1,5 @@
 {
-  "name": "jwt-auth",
+  "name": "secure-auth-api",
   "version": "1.0.0",
   "type": "module",
   "description": "",
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/imohamadnashaat/jwt-auth.git"
+    "url": "git+https://github.com/imohamadnashaat/secure-auth-api.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/imohamadnashaat/jwt-auth/issues"
+    "url": "https://github.com/imohamadnashaat/secure-auth-api/issues"
   },
-  "homepage": "https://github.com/imohamadnashaat/jwt-auth#readme",
+  "homepage": "https://github.com/imohamadnashaat/secure-auth-api#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.1.3",
