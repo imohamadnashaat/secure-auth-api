@@ -1,1 +1,3 @@
-# jwt-auth
+# SecureAuth API
+
+SecureAuth API is a robust and secure user authentication API that implements JSON Web Tokens (JWT) for token-based authentication. It provides a comprehensive set of endpoints for user registration, login, and user management, ensuring the confidentiality and integrity of user data. The API employs industry-standard security measures, including password hashing and encryption, to safeguard user credentials and sensitive information. With its scalable and modular architecture, SecureAuth API can seamlessly integrate into various applications, enabling developers to implement a reliable and secure authentication system.
