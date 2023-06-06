@@ -1,28 +1,25 @@
 import db from '../services/db.js';
 
 const createLoginByEmail = async (email, password) => {
-  const query =
-    'INSERT INTO login (email, password) VALUES ($1, $2) RETURNING *';
-  const login = await db.query(query, [email, password]);
-  return login.rows[0];
+  const login = await db('login').insert({ email, password }).returning('*');
+  return login[0];
 };
 
 const updateLoginByEmail = async (email, newEmail) => {
-  const query = 'UPDATE login SET email = $1 WHERE email = $2 RETURNING *';
-  const result = await db.query(query, [newEmail, email]);
-  return result.rows[0];
+  const result = await db('login')
+    .where('email', email)
+    .update({ email: newEmail })
+    .returning('*');
+  return result[0];
 };
 
-const DeleteLoginByEmail = async (email) => {
-  const query = 'DELETE FROM login WHERE email = $1';
-  const result = await db.query(query, [email]);
-  return result.rows[0];
+const deleteLoginByEmail = async (email) => {
+  await db('login').where('email', email).del();
 };
 
 const loginByEmail = async (email) => {
-  const query = 'SELECT * FROM login WHERE email = $1';
-  const result = await db.query(query, [email]);
-  return result.rows[0];
+  const result = await db('login').where('email', email).first();
+  return result;
 };
 
 const logoutByEmail = async (email) => {
@@ -36,7 +33,7 @@ const resetPasswordByEmail = async (email) => {
 export {
   createLoginByEmail,
   updateLoginByEmail,
-  DeleteLoginByEmail,
+  deleteLoginByEmail,
   loginByEmail,
   logoutByEmail,
   resetPasswordByEmail,

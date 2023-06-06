@@ -3,7 +3,7 @@ import db from '../services/db.js';
 // Create users and login tables in the database
 const createTables = async () => {
   try {
-    await db.query(`
+    await db.raw(`
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
@@ -12,7 +12,7 @@ const createTables = async () => {
       )
     `);
 
-    await db.query(`
+    await db.raw(`
       CREATE TABLE IF NOT EXISTS login (
         id SERIAL PRIMARY KEY,
         email VARCHAR(255) UNIQUE NOT NULL,
