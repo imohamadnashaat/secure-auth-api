@@ -19,7 +19,7 @@ const register = async (req, res) => {
 
     const user = await createUser(name, email, hashedPassword);
 
-    const token = generateToken(user);
+    const token = generateToken({ sub: user.id });
     user.token = token;
 
     res.status(201).json(user);
@@ -49,7 +49,7 @@ const login = async (req, res) => {
     }
 
     const user = await getUserByEmail(email);
-    const token = generateToken(user);
+    const token = generateToken({ sub: user.id });
     user.token = token;
 
     res.status(200).json(user);
