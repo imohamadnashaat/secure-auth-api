@@ -46,19 +46,20 @@ const login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const loginCred = await loginByEmail(email);
-    if (!loginCred) {
+    const user = await getUserByEmail(email);
+    if (!user) {
       res.status(401).json({ message: 'Invalid credentials' });
       return;
     }
 
-    const isPasswordValid = await comparePasswords(password, loginCred.hash);
+    const login = await loginByEmail(email);
+
+    const isPasswordValid = await comparePasswords(password, login.hash);
     if (!isPasswordValid) {
       res.status(401).json({ message: 'Invalid credentials' });
       return;
     }
 
-    const user = await getUserByEmail(email);
     const token = generateToken({ sub: user.id });
     user.token = token;
 
